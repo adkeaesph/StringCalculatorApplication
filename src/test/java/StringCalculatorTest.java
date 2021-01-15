@@ -47,4 +47,10 @@ class StringCalculatorTest {
 		numbers = "1\n3,4,5\n6,2\n4";
 		assertEquals(25, StringCalculator.add(numbers));
 	}
+	
+	@Test
+	public void testAdd8() {
+		numbers = "1\n3,4,5\n6,2\n4\n5\n\n2";
+		assertEquals(32, StringCalculator.add(numbers));
+	}
 }
