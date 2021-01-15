@@ -53,4 +53,22 @@ class StringCalculatorTest {
 		numbers = "1\n3,4,5\n6,2\n4\n5\n\n2";
 		assertEquals(32, StringCalculator.add(numbers));
 	}
+	
+	@Test
+	public void testAdd9() {
+		numbers = "//;\n1";
+		assertEquals(1, StringCalculator.add(numbers));
+	}
+	
+	@Test
+	public void testAdd10() {
+		numbers = "//;\n1;2";
+		assertEquals(3, StringCalculator.add(numbers));
+	}
+	
+	@Test
+	public void testAdd11() {
+		numbers = "//;\n1\n3;4;5\n6;2\n4\n5\n\n2";
+		assertEquals(32, StringCalculator.add(numbers));
+	}
 }
