@@ -32,10 +32,20 @@ public class StringCalculator {
 		if(numbers.isEmpty())
 			return 0;
 
-		char delimiter = ',';	// default delimiter
+		String delimiter = ",";	// default delimiter
 		if(numbers.indexOf("//") == 0) {
-			delimiter = numbers.charAt(2);	//storing the provided delimiter
-			numbers = numbers.substring(3);	//assigning the rest of the string to numbers variable devoid of the delimiter part
+			if(numbers.charAt(2)!='[' || numbers.indexOf("]") == -1) {
+				delimiter = ""+numbers.charAt(2);	//storing the provided delimiter of single character
+				numbers = numbers.substring(3);		//assigning the rest of the string to numbers variable devoid of the delimiter part
+			} else {
+				int m=3;
+				delimiter = "";
+				while (numbers.charAt(m)!=']') {	//parsing through multi-character delimiter
+					delimiter += numbers.charAt(m);
+					m++;
+				}
+				numbers = numbers.substring(m+1);	//assigning the rest of the string to numbers variable devoid of the delimiter part
+			}
 		}
 		
 		String[] singleLineOfNumbers = numbers.split("[\n]+");	//splitting the string into an array of single lines of numbers 
