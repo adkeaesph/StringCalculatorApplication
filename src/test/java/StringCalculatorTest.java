@@ -35,4 +35,11 @@ class StringCalculatorTest {
 		numbers = "1,2,3,23,10";
 		assertEquals(39, StringCalculator.add(numbers));
 	}
+	
+	
+	@Test
+	public void testAdd6() {
+		numbers = "1\\n3,4";
+		assertEquals(8, StringCalculator.add(numbers));
+	}
 }
