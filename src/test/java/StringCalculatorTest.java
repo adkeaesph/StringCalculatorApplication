@@ -115,4 +115,10 @@ class StringCalculatorTest {
 
 	    assertEquals("negatives not allowed -> -123 -42 -9", exception.getMessage());
 	}
+	
+	@Test
+	public void testAdd16() throws NegativeNumberException {
+		numbers = "1\n3,4400,5\n60000,2\n4\n50\n\n2";
+		assertEquals(67, StringCalculator.add(numbers));
+	}
 }

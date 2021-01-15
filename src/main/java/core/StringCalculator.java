@@ -46,7 +46,7 @@ public class StringCalculator {
 			arrayOfNumbers = singleLineOfNumbers[i].split("["+delimiter+"]");	//splitting a single line into individual numbers
 																				//which are separated by the specified delimiter
 			for(int j=0;j<arrayOfNumbers.length;j++)
-				if(!arrayOfNumbers[j].trim().isEmpty())
+				if(!arrayOfNumbers[j].trim().isEmpty() && Integer.parseInt(arrayOfNumbers[j]) <= 1000)
 					sum += Integer.parseInt(arrayOfNumbers[j]);
 		}
 		return sum;
