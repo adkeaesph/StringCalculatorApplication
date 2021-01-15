@@ -2,6 +2,8 @@
 public class StringCalculator {
 	
 	public static int add(String numbers) {
-		return 0;
+		if(numbers.trim().isEmpty())
+			return 0;
+		return Integer.parseInt(numbers.trim());
 	}
 }
