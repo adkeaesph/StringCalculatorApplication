@@ -95,4 +95,24 @@ class StringCalculatorTest {
 
 	    assertEquals("negatives not allowed -> -123", exception.getMessage());
 	}
+	
+	@Test
+	public void testAdd14() {
+		numbers = "//;2\n-123;24\n-42;9";
+		Exception exception = assertThrows(NegativeNumberException.class, () -> {
+	        StringCalculator.add(numbers);
+	    });
+
+	    assertEquals("negatives not allowed -> -123 -42", exception.getMessage());
+	}
+	
+	@Test
+	public void testAdd15() {
+		numbers = "//;2\n-123;24\n-42;-9";
+		Exception exception = assertThrows(NegativeNumberException.class, () -> {
+	        StringCalculator.add(numbers);
+	    });
+
+	    assertEquals("negatives not allowed -> -123 -42 -9", exception.getMessage());
+	}
 }

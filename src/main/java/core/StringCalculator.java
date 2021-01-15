@@ -3,17 +3,29 @@ package core;
 import customexceptions.NegativeNumberException;
 
 public class StringCalculator {
+	
+	public static String findNegativeNumbers(String numbers) {
+		int i=0;
+		String stringOfNegativeNumbers = "";
+		while(i<numbers.length()) {
+			if(numbers.charAt(i) == '-') {
+				stringOfNegativeNumbers += "-";
+				int j = ++i;
+				while(j<numbers.length() && numbers.charAt(j) >= '0' && numbers.charAt(j) <= '9') {
+					stringOfNegativeNumbers += numbers.charAt(j);
+					j++;
+					i++;
+				}
+				stringOfNegativeNumbers += " ";
+			} else
+				i++;
+		}
+		return stringOfNegativeNumbers.trim();
+	}
 
 	public static int add(String numbers) throws NegativeNumberException{
 		if(numbers.contains("-")) {
-			String negativeNumber = "-";
-			int i = numbers.indexOf('-');
-			i++;
-			while(i<numbers.length() && numbers.charAt(i) >= '0' && numbers.charAt(i) <= '9') {
-				negativeNumber += numbers.charAt(i);
-				i++;
-			}
-			throw new NegativeNumberException("negatives not allowed -> "+negativeNumber);
+			throw new NegativeNumberException("negatives not allowed -> "+findNegativeNumbers(numbers));
 		}
 		
 		numbers = numbers.trim();
