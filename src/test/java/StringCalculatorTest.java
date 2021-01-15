@@ -36,10 +36,15 @@ class StringCalculatorTest {
 		assertEquals(39, StringCalculator.add(numbers));
 	}
 	
-	
 	@Test
 	public void testAdd6() {
-		numbers = "1\\n3,4";
-		assertEquals(8, StringCalculator.add(numbers));
+		numbers = "1\n2,4";
+		assertEquals(7, StringCalculator.add(numbers));
+	}
+	
+	@Test
+	public void testAdd7() {
+		numbers = "1\n3,4,5\n6,2\n4";
+		assertEquals(25, StringCalculator.add(numbers));
 	}
 }
