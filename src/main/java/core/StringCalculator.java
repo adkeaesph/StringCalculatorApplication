@@ -1,7 +1,21 @@
+package core;
+
+import customexceptions.NegativeNumberException;
 
 public class StringCalculator {
 
-	public static int add(String numbers) {
+	public static int add(String numbers) throws NegativeNumberException{
+		if(numbers.contains("-")) {
+			String negativeNumber = "-";
+			int i = numbers.indexOf('-');
+			i++;
+			while(i<numbers.length() && numbers.charAt(i) >= '0' && numbers.charAt(i) <= '9') {
+				negativeNumber += numbers.charAt(i);
+				i++;
+			}
+			throw new NegativeNumberException("negatives not allowed -> "+negativeNumber);
+		}
+		
 		numbers = numbers.trim();
 		if(numbers.isEmpty())
 			return 0;
