@@ -34,17 +34,22 @@ public class StringCalculator {
 
 		String delimiter = ",";	// default delimiter
 		if(numbers.indexOf("//") == 0) {
-			if(numbers.charAt(2)!='[' || numbers.indexOf("]") == -1) {
-				delimiter = ""+numbers.charAt(2);	//storing the provided delimiter of single character
-				numbers = numbers.substring(3);		//assigning the rest of the string to numbers variable devoid of the delimiter part
+			numbers = numbers.substring(2);
+			if(numbers.charAt(0)!='[' || numbers.indexOf("]") == -1) {
+				delimiter = ""+numbers.charAt(0);	//storing the provided delimiter of single character
+				numbers = numbers.substring(1);		//assigning the rest of the string to numbers variable devoid of the delimiter part
 			} else {
-				int m=3;
 				delimiter = "";
-				while (numbers.charAt(m)!=']') {	//parsing through multi-character delimiter
-					delimiter += numbers.charAt(m);
-					m++;
+				int endIndex = numbers.indexOf("\n");
+				int m;
+				for(m=0; m<endIndex; m++) {
+					if(numbers.charAt(m) == ']')
+						delimiter += "]|";
+					else
+						delimiter += numbers.charAt(m);
 				}
-				numbers = numbers.substring(m+1);	//assigning the rest of the string to numbers variable devoid of the delimiter part
+				delimiter = delimiter.substring(0, delimiter.length()-1);  //storing the regex of multiple delimiters
+				numbers = numbers.substring(m);	//assigning the rest of the string to numbers variable devoid of the delimiter part
 			}
 		}
 		
@@ -53,7 +58,7 @@ public class StringCalculator {
 
 		String[] arrayOfNumbers;
 		for(int i=0;i<singleLineOfNumbers.length;i++) {	
-			arrayOfNumbers = singleLineOfNumbers[i].split("["+delimiter+"]");	//splitting a single line into individual numbers
+			arrayOfNumbers = singleLineOfNumbers[i].split(delimiter);	//splitting a single line into individual numbers
 																				//which are separated by the specified delimiter
 			for(int j=0;j<arrayOfNumbers.length;j++)
 				if(!arrayOfNumbers[j].trim().isEmpty() && Integer.parseInt(arrayOfNumbers[j]) <= 1000)

@@ -133,4 +133,22 @@ class StringCalculatorTest {
 		numbers = "//[#$#]\n1\n3#$#4#$#5\n6#$#2\n4\n5\n\n2";
 		assertEquals(32, StringCalculator.add(numbers));
 	}
+	
+	@Test
+	public void testAdd19() throws NegativeNumberException {
+		numbers = "//[*][%]\n1*2%3";
+		assertEquals(6, StringCalculator.add(numbers));
+	}
+	
+	@Test
+	public void testAdd20() throws NegativeNumberException {
+		numbers = "//[&^^][%][@#]\n1\n3&^^4%5\n6@#2\n4@#10%10&^^10";
+		assertEquals(55, StringCalculator.add(numbers));
+	}
+	
+	@Test
+	public void testAdd21() throws NegativeNumberException {
+		numbers = "//[*+*][#]\n1\n3*+*4400#5\n60000#2\n4\n50\n\n2";
+		assertEquals(67, StringCalculator.add(numbers));
+	}
 }
